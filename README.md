@@ -6,3 +6,4 @@ Har bir papka bitta namespace ni o'z ichiga oladi
 ### [Mertic Server](kube-system/Mertic-Server.md)
 ### [Ingress-Nginx](ingress-nginx/ingress-install.md)
 ### [Keycloak](keycloak/keycloak-install.md)
+### [Harbor](harbor/harbor-install.md)

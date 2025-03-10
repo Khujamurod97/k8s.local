@@ -1,0 +1,50 @@
+# Core Harbor settings
+harborAdminPassword: "YourSecurePassword123"  # Replace with your secure password
+
+# Expose Harbor using ingress
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    certSource: auto  # Uses self-signed certs for local dev
+  ingress:
+    hosts:
+      core: harbor.local
+    annotations:
+      kubernetes.io/ingress.class: nginx
+
+# Use internal database and Redis for local setup
+database:
+  type: internal
+  
+redis:
+  type: internal
+
+# Persistence for components
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:
+      size: 10Gi
+    chartmuseum:
+      size: 5Gi
+    jobservice:
+      size: 1Gi
+    database:
+      size: 1Gi
+    redis:
+      size: 1Gi
+
+# Appropriate resource limits for local development
+registry:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 100m
+
+# Disable content trust for local development (simpler setup)
+enableContentTrust: false
+
+# Standard update strategy
+updateStrategy:
+  type: RollingUpdate  
