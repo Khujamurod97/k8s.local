@@ -1,0 +1,19 @@
+# dashboard-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: default-ingress
+  namespace: valkey
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: valkey.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: valkey
+                port:
+                  number: 6379
